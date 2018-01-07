@@ -1,0 +1,105 @@
+{
+  "content": [
+    {
+      "name": "MI3",
+      "preroll": [{ "name": "WB1" }, { "name": "WB3" }],
+      "videos": [
+        { "name": "V1", "attributes": {"countries": ["US", "CA"], "language":
+        "English", "aspect": "16:9"} },
+        { "name": "V2", "attributes": {"countries": ["UK"], "language": "English",
+          "aspect": "4:3"} },
+        { "name": "V3", "attributes": {"countries": ["UK"], "language": "English",
+          "aspect": "16:9"} }
+      ]
+    },
+    {
+      "name": "MI4",
+      "preroll": [{ "name": "WB3" }],
+      "videos": [
+        { "name": "V1", "attributes": {"countries": ["US", "CA"], "language":
+        "English", "aspect": "16:9"} },
+        { "name": "V2", "attributes": {"countries": ["UK"], "language": "English",
+          "aspect": "4:3"} },
+        { "name": "V3", "attributes": {"countries": ["UK"], "language": "English",
+          "aspect": "16:9"} }
+      ]
+    },
+    {
+      "name": "MI5",
+      "preroll": [{ "name": "WB2" }],
+      "videos": [
+        { "name": "V1", "attributes": {"countries": ["US", "CA"], "language":
+        "English", "aspect": "16:9"} },
+        { "name": "V2", "attributes": {"countries": ["UK"], "language": "English",
+          "aspect": "4:3"} },
+        { "name": "V3", "attributes": {"countries": ["UK"], "language": "English",
+          "aspect": "16:9"} }
+      ]
+    },
+    {
+      "name": "MI6",
+      "preroll": [{ "name": "WB2" }],
+      "videos": [
+        { "name": "V1", "attributes": {"countries": ["US", "CA"], "language":
+        "English", "aspect": "16:9"} },
+        { "name": "V8", "attributes": {"countries": ["US"], "language":
+        "Spanish", "aspect": "16:9"} },
+        { "name": "V9", "attributes": {"countries": ["CA"], "language":
+        "French", "aspect": "16:9"} },
+        { "name": "V2", "attributes": {"countries": ["UK"], "language": "English",
+          "aspect": "4:3"} },
+        { "name": "V3", "attributes": {"countries": ["UK"], "language": "English",
+          "aspect": "16:9"} }
+      ]
+    },
+    {
+      "name": "MI4",
+      "preroll": [{ "name": "WB3" }, { "name": "WB1" }, { "name": "WB2" }],
+      "videos": [
+        { "name": "V1", "attributes": {"countries": ["US", "CA"], "language":
+        "English", "aspect": "16:9"} },
+        { "name": "V2", "attributes": {"countries": ["UK"], "language": "English",
+          "aspect": "4:3"} },
+        { "name": "V3", "attributes": {"countries": ["UK"], "language": "English",
+          "aspect": "16:9"} }
+      ]
+    }],
+  "preroll": [
+    {
+      "name": "WB1",
+      "videos": [
+        { "name": "V4", "attributes": {"countries": ["US"], "language": "English",
+          "aspect": "4:3"} },
+        { "name": "V5", "attributes": {"countries": ["CA"], "language": "English",
+          "aspect": "16:9"} },
+        { "name": "V6", "attributes": {"countries": ["UK"], "language": "English",
+          "aspect": "4:3"} },
+        { "name": "V7", "attributes": {"countries": ["UK"], "language": "English",
+          "aspect": "16:9"} }
+      ]
+    },
+    {
+      "name": "WB2",
+      "videos": [
+        { "name": "V14", "attributes": {"countries": ["US"], "language": "English",
+          "aspect": "4:3"} },
+        { "name": "V14", "attributes": {"countries": ["US"], "language": "Spanish",
+          "aspect": "4:3"} },
+        { "name": "V14", "attributes": {"countries": ["US"], "language": "Spanish",
+          "aspect": "16:9"} },
+        { "name": "V16", "attributes": {"countries": ["UK"], "language": "English",
+          "aspect": "4:3"} }
+      ]
+    },
+    {
+      "name": "WB3",
+      "videos": [
+        { "name": "V24", "attributes": {"countries": ["US"], "language": "English",
+          "aspect": "16:9"} },
+        { "name": "V26", "attributes": {"countries": ["UK"], "language": "English",
+          "aspect": "16:9"} },
+        { "name": "V25", "attributes": {"countries": ["CA"], "language": "English",
+          "aspect": "16:9"} }
+      ]
+    }]
+}
