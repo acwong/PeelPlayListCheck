@@ -1,0 +1,10 @@
+.DS_Store
+Thumbs.db
+out/
+build/
+.gradle/
+.idea/
+*.hprof
+*.swp
+*.class
+
