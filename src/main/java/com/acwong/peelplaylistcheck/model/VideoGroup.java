@@ -1,45 +1,38 @@
 package com.acwong.peelplaylistcheck.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class VideoGroup {
-    @JsonProperty("name")
-    private String videoGroupId;
+    private final String videoGroupId;
+    private final List<Video> videos;
 
-    @JsonProperty("videos")
-    private List<Video> videos = new ArrayList<Video>();
-
-    public VideoGroup() {
+    @JsonCreator
+    public VideoGroup(@JsonProperty("name") String videoGroupId, @JsonProperty("videos") List<Video> videos) {
+        this.videoGroupId = videoGroupId;
+        this.videos = Collections.unmodifiableList(videos);
     }
 
     /**
      * Elements in {@code videos} of type {@link Video} are not deep-copied.
      */
-    public VideoGroup(VideoGroup content) {
-        videoGroupId = content.getVideoGroupId();
-        videos.addAll(content.getVideos());
+    public VideoGroup(VideoGroup videoGroup, List<Video> videos) {
+        videoGroupId = videoGroup.getVideoGroupId();
+        this.videos = Collections.unmodifiableList((videos == null) ? videoGroup.getVideos() : videos);
     }
 
     public String getVideoGroupId() {
         return videoGroupId;
     }
 
-    public void setVideoGroupId(String videoGroupId) {
-        this.videoGroupId = videoGroupId;
-    }
-
     public List<Video> getVideos() {
         return videos;
-    }
-
-    public void setVideos(List<Video> videos) {
-        this.videos = videos;
     }
 
     @Override

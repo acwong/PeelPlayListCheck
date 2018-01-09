@@ -1,45 +1,38 @@
 package com.acwong.peelplaylistcheck.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MediaAttribute {
-    @JsonProperty("countries")
-    private List<Country> countries = new ArrayList<Country>();
+    private final List<Country> countries;
+    private final Language language;
+    private final String aspectRatio;
 
-    @JsonProperty("language")
-    private Language language;
-
-    @JsonProperty("aspect")
-    private String aspectRatio;
+    @JsonCreator
+    public MediaAttribute(@JsonProperty("countries") List<Country> countries,
+                          @JsonProperty("language") Language language, @JsonProperty("aspect") String aspectRatio) {
+        this.countries = Collections.unmodifiableList((countries == null) ? new ArrayList<Country>() : countries);
+        this.language = language;
+        this.aspectRatio = aspectRatio;
+    }
 
     public List<Country> getCountries() {
         return countries;
-    }
-
-    public void setCountries(List<Country> countries) {
-        this.countries = countries;
     }
 
     public Language getLanguage() {
         return language;
     }
 
-    public void setLanguage(Language language) {
-        this.language = language;
-    }
-
     public String getAspectRatio() {
         return aspectRatio;
-    }
-
-    public void setAspectRatio(String aspectRatio) {
-        this.aspectRatio = aspectRatio;
     }
 
     @Override

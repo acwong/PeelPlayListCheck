@@ -4,7 +4,6 @@ import com.acwong.peelplaylistcheck.id.ContentId;
 import com.acwong.peelplaylistcheck.id.VideoTag;
 import com.acwong.peelplaylistcheck.model.Country;
 import com.acwong.peelplaylistcheck.playlist.PlayList;
-import com.acwong.peelplaylistcheck.playlist.PlayListHelper;
 import com.acwong.peelplaylistcheck.util.ExitDeniedSecurityManager;
 import com.acwong.peelplaylistcheck.util.ExitDeniedSecurityManager.ExitSecurityException;
 import org.junit.jupiter.api.AfterEach;
@@ -24,7 +23,6 @@ class PeelPlayListCheckTest {
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
 
-    private PlayListHelper helper;
     private PrintStream consoleOutput;
     private PrintStream consoleError;
     private SecurityManager defaultSecurityManager;
@@ -38,7 +36,7 @@ class PeelPlayListCheckTest {
     }
 
     @BeforeEach
-    void setUpExitExpectation() {
+    public void setUpExitExpectation() {
         defaultSecurityManager = System.getSecurityManager();
         System.setSecurityManager(new ExitDeniedSecurityManager());
     }
@@ -50,7 +48,7 @@ class PeelPlayListCheckTest {
     }
 
     @AfterEach
-    void tearDownExitExpectation() {
+    public void tearDownExitExpectation() {
         System.setSecurityManager(defaultSecurityManager);
     }
 
@@ -83,7 +81,7 @@ class PeelPlayListCheckTest {
                 PeelPlayListCheck.generatePlayListsOutputString(new PlayList()));
 
         assertEquals("Playlist1\n"
-                + "{ V1 }",
+                        + "{ V1 }",
                 PeelPlayListCheck.generatePlayListsOutputString(new PlayList(VideoTag.V1.name())));
         assertEquals("Playlist1\n"
                         + "{ V5, V1 }\n\n"

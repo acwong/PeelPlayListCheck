@@ -1,13 +1,15 @@
 package com.acwong.peelplaylistcheck;
 
+import com.acwong.peelplaylistcheck.model.ContentCollection;
 import com.acwong.peelplaylistcheck.playlist.PlayList;
-import com.acwong.peelplaylistcheck.playlist.PlayListHelper;
-import com.acwong.peelplaylistcheck.playlist.PlayListHelperImpl;
 import com.acwong.peelplaylistcheck.playlist.PlayLists;
+import com.acwong.peelplaylistcheck.util.FileLoader;
 
 import static java.lang.System.exit;
 
 public class PeelPlayListCheck {
+    public static final String DEFAULT_VIDEO_CONTENT_INFO_FILE = "videolibrary.json";
+
     /* package */ static final String INPUT_ERROR_MESSAGE = "Input error!";
     /* package */ static final String CONTENT_NOT_SPECIFIED_MESSAGE = "Content not specified or unavailable!";
     /* package */ static final String PLAYLIST_INTERNAL_ERROR_MESSAGE = "Playlist internal error!";
@@ -20,8 +22,6 @@ public class PeelPlayListCheck {
     /* package */ static final String INCOMPATIBLE_ATTRIBUTES_ERROR_MESSAGE = INCOMPATIBLE_ASPECT_RATIO_ERROR_MESSAGE;
 
     private static final String PLAYLIST_PREFIX = "Playlist";
-
-    private static PlayListHelper playListHelper;
 
     public static String generatePlayListsOutputString(PlayList... playLists) {
         if ((playLists == null) || (playLists.length == 0)) {
@@ -58,9 +58,14 @@ public class PeelPlayListCheck {
             exit(-1);
         }
 
-        playListHelper = new PlayListHelperImpl();
-        playListHelper.loadVideoContentInfo();
-        PlayLists playLists = playListHelper.getPlayLists(args[0], args[1]);
+        ContentCollection contentCollection = new FileLoader().loadFromJson(DEFAULT_VIDEO_CONTENT_INFO_FILE,
+                ContentCollection.class);
+        if (contentCollection == null) {
+            System.out.println(CONTENT_NOT_SPECIFIED_MESSAGE);
+            return;
+        }
+
+        PlayLists playLists = contentCollection.getPlayLists(args[0], args[1]);
         System.out.println(generatePlayListsOutputString(playLists == null ? null :
                 playLists.toArray(new PlayList[0])));
     }

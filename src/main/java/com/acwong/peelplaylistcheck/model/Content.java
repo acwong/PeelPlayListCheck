@@ -1,35 +1,35 @@
 package com.acwong.peelplaylistcheck.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Content extends VideoGroup {
-    @JsonProperty("preroll")
-    private List<PreRollId> preRollIds = new ArrayList<PreRollId>();
+    private final List<PreRollId> preRollIds;
 
-    @SuppressWarnings("unused")
-    public Content() {
+    @JsonCreator
+    public Content(@JsonProperty("name") String videoGroupId, @JsonProperty("videos") List<Video> videos,
+                   @JsonProperty("preroll") List<PreRollId> preRollIds) {
+        super(videoGroupId, videos);
+        this.preRollIds = Collections.unmodifiableList((preRollIds == null) ? new ArrayList<PreRollId>() : preRollIds);
     }
 
     /**
      * Elements in {@code preRollIds} of type {@link PreRollId} are not deep-copied.
      */
-    public Content(Content content) {
-        super(content);
-        preRollIds.addAll(content.getPreRollIds());
+    public Content(Content content, List<Video> videos) {
+        super(content, videos);
+        preRollIds = Collections.unmodifiableList(content.getPreRollIds());
     }
 
     public List<PreRollId> getPreRollIds() {
         return preRollIds;
-    }
-
-    public void setPreRollIds(List<PreRollId> preRollIds) {
-        this.preRollIds = preRollIds;
     }
 
     @Override

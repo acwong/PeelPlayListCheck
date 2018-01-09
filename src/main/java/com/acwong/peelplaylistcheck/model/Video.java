@@ -1,34 +1,28 @@
 package com.acwong.peelplaylistcheck.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Video {
-    @JsonProperty("name")
-    private String tag;
+    private final String tag;
+    private final MediaAttribute attributes;
 
-    @JsonProperty("attributes")
-    private MediaAttribute attributes;
+    @JsonCreator
+    public Video(@JsonProperty("name") String tag, @JsonProperty("attributes") MediaAttribute attributes) {
+        this.tag = tag;
+        this.attributes = attributes;
+    }
 
     public String getTag() {
         return tag;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
-
     public MediaAttribute getAttributes() {
         return attributes;
-    }
-
-    public void setAttributes(MediaAttribute attributes) {
-        this.attributes = attributes;
     }
 
     @Override

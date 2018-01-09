@@ -1,21 +1,22 @@
 package com.acwong.peelplaylistcheck.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PreRollId {
-    @JsonProperty("name")
-    private String videoGroupId;
+    private final String videoGroupId;
+
+    @JsonCreator
+    public PreRollId(@JsonProperty("name") String videoGroupId) {
+        this.videoGroupId = videoGroupId;
+    }
 
     public String getVideoGroupId() {
         return videoGroupId;
-    }
-
-    public void setVideoGroupId(String videoGroupId) {
-        this.videoGroupId = videoGroupId;
     }
 
     @Override
